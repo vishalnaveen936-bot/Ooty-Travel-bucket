@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ooty Travel Bucket | Explore Ooty, Tamil Nadu</title>
+    <style>
+        :root {
+            --bg: #f4f8f5;
+            --card: #ffffff;
+            --primary: #1d7a4b;
+            --primary-dark: #135737;
+            --accent: #f0d985;
+            --text: #1f2a1f;
+            --muted: #667168;
+            --border: rgba(17, 42, 28, 0.08);
+            --shadow: 0 18px 40px rgba(15, 43, 28, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(180deg, #edf8f0 0%, #f5f8f6 18%, #ffffff 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 72px;
+            gap: 24px;
+        }
+
+        .logo {
+            font-size: clamp(1.4rem, 2vw, 2.1rem);
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: var(--primary-dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            padding: 92px 0 70px;
+            background:
+                linear-gradient(120deg, rgba(12, 52, 35, 0.78), rgba(27, 120, 76, 0.42)),
+                url('images/feature-garden.svg') center/cover no-repeat;
+        }
+
+        .hero-content {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.6rem);
+            line-height: 1.08;
+            margin: 0 0 16px;
+            max-width: 640px;
+        }
+
+        .hero p {
+            font-size: 1.12rem;
+            max-width: 600px;
+            margin: 0 0 28px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn,
+        .small-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover,
+        .small-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            padding: 14px 24px;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 14px 28px rgba(29, 122, 75, 0.22);
+        }
+
+        .btn-light {
+            background: #fff;
+            color: var(--primary-dark);
+        }
+
+        .map {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 42px;
+        }
+
+        .section-title h2 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--primary-dark);
+        }
+
+        .section-title p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.03rem;
+        }
+
+        .intro-grid,
+        .cards,
+        .feature-grid {
+            display: grid;
+            gap: 28px;
+        }
+
+        .intro-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .intro-card,
+        .card,
+        .camera-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .intro-card {
+            padding: 28px 22px;
+            text-align: center;
+        }
+
+        .intro-icon {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 18px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #e4f7e8, #d8f0dd);
+            font-size: 2rem;
+        }
+
+        .intro-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.45rem;
+            color: var(--primary-dark);
+        }
+
+        .intro-card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .cards {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background: #dfeee2;
+        }
+
+        .card-content {
+            padding: 22px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .tag {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(29, 122, 75, 0.1);
+            color: var(--primary-dark);
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .card h3 {
+            margin: 0 0 12px;
+            font-size: 1.45rem;
+            color: var(--primary-dark);
+        }
+
+        .card p {
+            margin: 0 0 20px;
+            color: var(--muted);
+        }
+
+        .card-buttons {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .small-btn {
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            border: 1px solid transparent;
+        }
+
+        .small-btn.more {
+            background: #ebf8ee;
+            color: var(--primary-dark);
+            border-color: rgba(29, 122, 75, 0.08);
+        }
+
+        .small-btn.map {
+            background: #f6eee0;
+            color: #7e5520;
+            border-color: rgba(126, 85, 32, 0.08);
+        }
+
+        .feature {
+            background: linear-gradient(180deg, #f3faf4 0%, #edf7f1 100%);
+        }
+
+        .feature-grid {
+            grid-template-columns: 1.05fr 1fr;
+            align-items: center;
+        }
+
+        .feature-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 26px;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .feature-text {
+            padding: 10px 0 10px 24px;
+        }
+
+        .feature-text h2 {
+            margin: 0 0 16px;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            color: var(--primary-dark);
+        }
+
+        .feature-text p {
+            margin: 0 0 18px;
+            color: var(--muted);
+            font-size: 1.04rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 0 0 24px;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .feature-text .btn-primary {
+            margin-right: 12px;
+        }
+
+        .food-section,
+        .camera-section,
+        .bucket {
+            background: #fff;
+        }
+
+        .camera-card {
+            position: relative;
+            min-height: 330px;
+            overflow: hidden;
+        }
+
+        .camera-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 330px;
+            object-fit: cover;
+        }
+
+        .camera-overlay {
+            position: absolute;
+            inset: auto 0 0 0;
+            background: linear-gradient(180deg, transparent, rgba(12, 18, 15, 0.8));
+            color: #fff;
+            padding: 24px 18px 18px;
+        }
+
+        .camera-overlay h3 {
+            margin: 0 0 8px;
+            font-size: 1.5rem;
+        }
+
+        .camera-overlay p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.86);
+        }
+
+        .bucket-list {
+            max-width: 820px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .bucket-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fbf9;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px 18px;
+            font-weight: 600;
+            color: var(--text);
+            box-shadow: 0 8px 18px rgba(15, 43, 28, 0.04);
+        }
+
+        .bucket-item input {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            background: #123824;
+            color: #eaf5ee;
+            padding: 42px 20px 52px;
+        }
+
+        footer h2 {
+            margin: 0 0 8px;
+            font-size: clamp(1.7rem, 3vw, 2.5rem);
+        }
+
+        footer p {
+            margin: 6px 0;
+            color: rgba(234, 245, 238, 0.8);
+        }
+
+        @media (max-width: 900px) {
+            .intro-grid,
+            .cards,
+            .bucket-list,
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-text {
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 680px) {
+            nav {
+                justify-content: center;
+                flex-direction: column;
+                padding: 18px 0;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .hero {
+                padding-top: 64px;
+            }
+
+            .intro-grid,
+            .cards,
+            .bucket-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons,
+            .card-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn,
+            .small-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Ooty<span>Bucket</span> 🌿</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#places">Places</a></li>
+            <li><a href="#food">Food</a></li>
+            <li><a href="#camera">Camera Views</a></li>
+            <li><a href="#bucket">Bucket List</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Your Ooty Travel Bucket 🌄</h1>
+        <p>Explore misty mountains, beautiful gardens, delicious local food and unforgettable camera views.</p>
+        <div class="hero-buttons">
+            <a href="#places" class="btn btn-primary">Explore Ooty</a>
+            <a href="#bucket" class="btn btn-light">My Bucket List</a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-title">
+            <h2>Why Ooty?</h2>
+            <p>A peaceful hill station in the Nilgiri Hills with nature, food, photography and adventure waiting around every corner.</p>
+        </div>
+
+        <div class="intro-grid">
+            <div class="intro-card">
+                <div class="intro-icon">🏔️</div>
+                <h3>Beautiful Places</h3>
+                <p>Discover lakes, waterfalls, gardens, mountains and tea plantations.</p>
+            </div>
+
+            <div class="intro-card">
+                <div class="intro-icon">🍫</div>
+                <h3>Local Food</h3>
+                <p>Taste famous Ooty Varkey, homemade chocolates and Nilgiri tea.</p>
+            </div>
+
+            <div class="intro-card">
+                <div class="intro-icon">📸</div>
+                <h3>Camera Views</h3>
+                <p>Find beautiful viewpoints for your travel photos and memories.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="places">
+    <div class="container">
+        <div class="section-title">
+            <h2>🌄 Top Tourist Places</h2>
+            <p>Add these beautiful Ooty attractions to your travel plan.</p>
+        </div>
+
+        <div class="cards">
+            <article class="card">
+                <img src="images/Government botanical garden.avif" alt="Government Botanical Garden Ooty" loading="lazy">
+                <div class="card-content">
+                    <span class="tag">🌺 Nature</span>
+                    <h3>Government Botanical Garden</h3>
+                    <p>Explore beautifully maintained lawns, rare trees, flower beds, fern houses, glass houses and the famous fossilized tree.</p>
+                    <div class="card-buttons">
+                        <a href="https://nilgiris.nic.in/tourist-place/botanical-garden/" target="_blank" class="small-btn more">Explore More</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Government+Botanical+Garden+Ooty" target="_blank" class="small-btn map">🗺️ Directions</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="images/Ooty lake.avif" alt="Ooty Lake boating" loading="lazy">
+                <div class="card-content">
+                    <span class="tag">🚣 Lake</span>
+                    <h3>Ooty Lake</h3>
+                    <p>Enjoy a relaxing boat ride surrounded by green hills and tall trees.</p>
+                    <div class="card-buttons">
+                        <a href="https://www.google.com/search?q=Ooty+Lake+tourism" target="_blank" class="small-btn more">Explore More</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Ooty+Lake+Tamil+Nadu" target="_blank" class="small-btn map">🗺️ Directions</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="images/Ooty lake visit.avif" alt="Pykara Falls Ooty" loading="lazy">
+                <div class="card-content">
+                    <span class="tag">💦 Waterfall</span>
+                    <h3>Pykara Falls</h3>
+                    <p>Enjoy the sound of cascading water and beautiful forest scenery around the Pykara area.</p>
+                    <div class="card-buttons">
+                        <a href="https://www.google.com/search?q=Pykara+Falls+Ooty" target="_blank" class="small-btn more">Explore More</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Pykara+Falls+Ooty" target="_blank" class="small-btn map">🗺️ Directions</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="images/Ooty rose garden.avif" alt="Ooty Rose Garden" loading="lazy">
+                <div class="card-content">
+                    <span class="tag">🌹 Garden</span>
+                    <h3>Ooty Rose Garden</h3>
+                    <p>Walk through colourful rose gardens arranged across the hillside.</p>
+                    <div class="card-buttons">
+                        <a href="https://www.google.com/search?q=Ooty+Rose+Garden" target="_blank" class="small-btn more">Explore More</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Ooty+Rose+Garden" target="_blank" class="small-btn map">🗺️ Directions</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="images/Doddabetta peak.avif" alt="Mountain view near Ooty" loading="lazy">
+                <div class="card-content">
+                    <span class="tag">🏔️ Mountain</span>
+                    <h3>Doddabetta Peak</h3>
+                    <p>Head towards the hills for panoramic views of the Nilgiri landscape.</p>
+                    <div class="card-buttons">
+                        <a href="https://www.google.com/search?q=Doddabetta+Peak+Ooty" target="_blank" class="small-btn more">Explore More</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Doddabetta+Peak+Ooty" target="_blank" class="small-btn map">🗺️ Directions</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="images/Nilgiri Tea Gardens.avif" alt="Ooty tea plantation" loading="lazy">
+                <div class="card-content">
+                    <span class="tag">🍃 Tea</span>
+                    <h3>Nilgiri Tea Gardens</h3>
+                    <p>Capture the rolling green tea estates and experience the peaceful side of the Nilgiris.</p>
+                    <div class="card-buttons">
+                        <a href="https://www.google.com/search?q=Ooty+tea+plantations" target="_blank" class="small-btn more">Explore More</a>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Ooty+Tea+Estate+Tamil+Nadu" target="_blank" class="small-btn map">🗺️ Directions</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="feature">
+    <div class="container">
+        <div class="feature-grid">
+            <div class="feature-image">
+                <img src="images/Discover ooty botanical garden.avif" alt="Government Botanical Garden in Ooty" loading="lazy">
+            </div>
+
+            <div class="feature-text">
+                <span class="tag">⭐ Featured Experience</span>
+                <h2>Discover Ooty Botanical Garden</h2>
+                <p>The Government Botanical Garden is one of Ooty's well-known attractions. The garden covers around 55 acres and features lawns, rare trees, flowering plants, ferns, glass houses and an old fossilized tree.</p>
+                <p>It is also a great location for photography, especially when flowers are in bloom.</p>
+
+                <ul class="feature-list">
+                    <li>🌳 Large landscaped garden</li>
+                    <li>🌺 Colourful flowers and plants</li>
+                    <li>🌿 Fern and orchid collections</li>
+                    <li>🪨 Ancient fossilized tree</li>
+                    <li>📸 Great photography opportunities</li>
+                </ul>
+
+                <a href="https://nilgiris.nic.in/tourist-place/botanical-garden/" target="_blank" class="btn btn-primary">Read Official Details</a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Government+Botanical+Garden+Ooty" target="_blank" class="btn map">🗺️ Open Map</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="food" class="food-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>🍴 Taste Ooty</h2>
+            <p>Don't just explore Ooty — taste it too!</p>
+        </div>
+
+        <div class="cards">
+            <article class="card">
+                <img src="images/Ooty varkey.avif" alt="Ooty Varkey" loading="lazy">
+                <div class="card-content">
+                    <span class="tag">🥐 Local Snack</span>
+                    <h3>Ooty Varkey</h3>
+                    <p>A crispy, layered local bakery snack that is closely associated with Ooty.</p>
+                    <div class="card-buttons">
+                        <a href="https://www.google.com/search?q=Ooty+Varkey" target="_blank" class="small-btn more">Learn More</a>
+                        <a href="https://www.google.com/maps/search/Ooty+Varkey+bakery" target="_blank" class="small-btn map">🗺️ Find Food</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="images/Homemade chocolates.avif" alt="Homemade chocolates in Ooty" loading="lazy">
+                <div class="card-content">
+                    <span class="tag">🍫 Sweet</span>
+                    <h3>Homemade Chocolates</h3>
+                    <p>Try milk, dark, nut and fudge-style homemade chocolates and take some home as a travel gift.</p>
+                    <div class="card-buttons">
+                        <a href="https://www.google.com/search?q=homemade+chocolates+Ooty" target="_blank" class="small-btn more">Explore</a>
+                        <a href="https://www.google.com/maps/search/homemade+chocolates+Ooty" target="_blank" class="small-btn map">🗺️ Find Shops</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="images/Nilgiri tea.avif" alt="Nilgiri tea" loading="lazy">
+                <div class="card-content">
+                    <span class="tag">☕ Hot Drink</span>
+                    <h3>Nilgiri Tea</h3>
+                    <p>Enjoy a warm cup of Nilgiri tea while taking in the cool Ooty weather.</p>
+                    <div class="card-buttons">
+                        <a href="https://www.google.com/search?q=Nilgiri+tea+Ooty" target="_blank" class="small-btn more">Learn More</a>
+                        <a href="https://www.google.com/maps/search/Nilgiri+tea+Ooty" target="_blank" class="small-btn map">🗺️ Find Tea</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="camera" class="camera-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>📸 Best Camera Views</h2>
+            <p>Save these locations for your travel photography and Instagram memories.</p>
+        </div>
+
+        <div class="cards">
+            <div class="camera-card">
+                <img src="images/Tea garden.avif" alt="Ooty tea garden photography" loading="lazy">
+                <div class="camera-overlay">
+                    <h3>🍃 Tea Garden</h3>
+                    <p>Shoot the green rolling hills during soft morning light.</p>
+                </div>
+            </div>
+
+            <div class="camera-card">
+                <img src="images/ooty lake.jpg" alt="Ooty Lake photography" loading="lazy">
+                <div class="camera-overlay">
+                    <h3>🚣 Ooty Lake</h3>
+                    <p>Capture boats, reflections and mountain scenery.</p>
+                </div>
+            </div>
+
+            <div class="camera-card">
+                <img src="images/Doddabetta.avif" alt="Doddabetta Peak view" loading="lazy">
+                <div class="camera-overlay">
+                    <h3>🏔️ Doddabetta</h3>
+                    <p>Try wide landscape shots from the high mountain viewpoint.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="bucket" class="bucket">
+    <div class="container">
+        <div class="section-title">
+            <h2>✅ My Ooty Bucket List</h2>
+            <p>Tick the experiences you want to complete!</p>
+        </div>
+
+        <div class="bucket-list">
+            <label class="bucket-item"><input type="checkbox">Visit Botanical Garden</label>
+            <label class="bucket-item"><input type="checkbox">Take a boat ride on Ooty Lake</label>
+            <label class="bucket-item"><input type="checkbox">Visit Pykara Falls</label>
+            <label class="bucket-item"><input type="checkbox">See Ooty Rose Garden</label>
+            <label class="bucket-item"><input type="checkbox">Visit Doddabetta Peak</label>
+            <label class="bucket-item"><input type="checkbox">Walk through a tea plantation</label>
+            <label class="bucket-item"><input type="checkbox">Try Ooty Varkey</label>
+            <label class="bucket-item"><input type="checkbox">Buy homemade chocolates</label>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h2>🌿 Ooty Travel Bucket</h2>
+    <p>Explore • Taste • Capture • Remember</p>
+    <p>© 2026 Ooty Travel Bucket</p>
+</footer>
+
+</body>
+</html>
